@@ -1,9 +1,9 @@
-Welcome to guide template's documentation!
-==========================================
+Orbit
+=====
 
 Contents:
 
 .. toctree::
    :maxdepth: 2
 
-   Orbit
+   orbit_manual
