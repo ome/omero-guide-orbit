@@ -6,27 +6,27 @@ Orbit Image Analysis is a free open-source software which can connect to OMERO a
 Description:
 ------------
 
-Orbit Image Analysis is a free open-source software with the focus on quantification of big images like whole slide scans. It offers sophisticated image analysis algorithms. Of those, tissue quantification using machine learning techniques, object / cell segmentation, and object classification are the basic ones. For more details, go to \ http://www.orbit.bio/\ .
+Orbit Image Analysis is a free open-source software with the focus on quantification of big images like whole slide scans. It offers sophisticated image analysis algorithms. Of those, tissue quantification using machine learning techniques, object/cell segmentation, and object classification are the basic ones. For more details, go to \ http://www.orbit.bio/\ .
 
 We show:
 
 -  How to connect Orbit to OMERO
 
--  How to open an image using Orbit user interface from OMERO
+-  How to open an image using Orbit user interface from OMERO.
 
--  How to create classes in Orbit, draw ROIs, train, segment and detect objects in Orbit
+-  How to create classes in Orbit, draw ROIs, train, segment and detect objects in Orbit.
 
--  How to save a “model” of the trained sequence from Orbit to OMERO
+-  How to save a “model” of the trained sequence from Orbit to OMERO.
 
 -  How to write a script which
 
-   -  Retrieves the saved model from OMERO to Orbit and
+   -  Retrieves the saved model from OMERO to Orbit.
 
-   -  Executes the model on a part of an image
+   -  Executes the model on a part of an image.
 
-   -  Does the segmentation and draws ROIs around the segmented objects
+   -  Does the segmentation and draws ROIs around the segmented objects.
 
-   -  Saves the ROIs on the original image in OMERO
+   -  Saves the ROIs on the original image in OMERO.
 
 Setup:
 ------
@@ -51,15 +51,15 @@ Manual training:
 
    .. image:: images/Orbit1.png
 
-2.  Then enter server details in the next dialog. Only the Host/IP field is essential here and should be set to *<omero-server.address>*. For example, the omero server address could be added in the form *demo.openmicroscopy.org* (Please replace with your own OMERO.server address).
+2.  Then enter the server details in the next dialog. Only the Host/IP field is essential here and should be set to *<omero-server.address>*. For example, the OMERO server address could be added in the form of *demo.openmicroscopy.org* (Please replace with your own OMERO.server address).
 
     .. image:: images/Orbit2.png
 
-3.  Then login to OMERO with the username and password   provided:
+3.  Then login to OMERO with the credentials provided:
 
     .. image:: images/Orbit3.png
 
-4.  Orbit will show data from OMERO in the left-hand panel. Click show only my assets to filter by data you own.
+4.  Orbit will show data from OMERO in the left-hand panel. Click show only my assets to filter by data your own.
 
 5.  Select the group Lab1.
 
@@ -73,7 +73,7 @@ Manual training:
 
     .. image:: images/Orbit5.png
 
-9.  We want to train a model to recognize cell nuclei and use this for segmentation.
+9.  The aim is to train a model to recognize cell nuclei and use this for segmentation.
 
 10. Click the Model tab and then the Classes button |image5|\
 
@@ -87,7 +87,7 @@ Manual training:
 
 14. Click OK to close the dialog.
 
-15. Now we will construct the model by defining regions of Foreground and Background on the Image.
+15. Now construct the model by defining regions of Foreground and Background on the Image.
 
 16. Click the Object Detection tab, select the Polygon tool and choose the Foreground class from the chooser at the top-left of the screen. 
 
