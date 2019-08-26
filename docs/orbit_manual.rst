@@ -47,108 +47,108 @@ See \ http://www.orbit.bio/\  for details.
 Manual training:
 ----------------
 
-1.  Launch Orbit, click *Yes* in the first dialog box:
+#.  Launch Orbit, click *Yes* in the first dialog box:
 
-   .. image:: images/Orbit1.png
+    .. image:: images/Orbit1.png
 
-2.  Then enter the server details in the next dialog. Only the Host/IP field is essential here and should be set to *<omero-server.address>*. For example, the OMERO server address could be added in the form of *demo.openmicroscopy.org* (Please replace with your own OMERO.server address).
+#.  Then enter the server details in the next dialog. Only the Host/IP field is essential here and should be set to *<omero-server.address>*. For example, the OMERO server address could be added in the form of *demo.openmicroscopy.org* (Please replace with your own OMERO.server address).
 
-    .. image:: images/Orbit2.png
+     .. image:: images/Orbit2.png
 
-3.  Then login to OMERO with the credentials provided:
+#.  Then login to OMERO with the credentials provided:
 
-    .. image:: images/Orbit3.png
+     .. image:: images/Orbit3.png
 
-4.  Orbit will show data from OMERO in the left-hand panel. Click show only my assets to filter by data your own.
+#.  Orbit will show data from OMERO in the left-hand panel. Click show only my assets to filter by data your own.
 
-5.  Select the group Lab1.
+#.  Select the group Lab1.
 
-6.  Datasets not within a Project are listed under unassigned:
+#.  Datasets not within a Project are listed under unassigned:
 
     .. image:: images/Orbit4.png
 
-7.  Select the svs Dataset. Image thumbnails will be shown in the panel below.
+#.  Select the svs Dataset. Image thumbnails will be shown in the panel below.
 
-8.  Double-click on the 77928.svs [Series 1] thumbnail or drag and drop it into the centre panel and maximise the viewer window to fill the centre panel.
+#.  Double-click on the 77928.svs [Series 1] thumbnail or drag and drop it into the centre panel and maximise the viewer window to fill the centre panel.
 
     .. image:: images/Orbit5.png
 
-9.  The aim is to train a model to recognize cell nuclei and use this for segmentation.
+#.  The aim is to train a model to recognize cell nuclei and use this for segmentation.
 
-10. Click the Model tab and then the Classes button |image5|\
+#. Click the Model tab and then the Classes button |image5|\
 
-11. In the dialog, remove the Celltype 1 class by selecting it and click the remove class button.
+#. In the dialog, remove the Celltype 1 class by selecting it and click the remove class button.
 
-12. The select the Celltype 2 class, and rename it by typing Foreground in the name field and clicking rename class.
+#. The select the Celltype 2 class, and rename it by typing Foreground in the name field and clicking rename class.
 
-13. You should now have two classes named Background and Foreground:
+#. You should now have two classes named Background and Foreground:
 
     .. image:: images/Orbit7.png
 
-14. Click OK to close the dialog.
+#. Click OK to close the dialog.
 
-15. Now construct the model by defining regions of Foreground and Background on the Image.
+#. Now construct the model by defining regions of Foreground and Background on the Image.
 
-16. Click the Object Detection tab, select the Polygon tool and choose the Foreground class from the chooser at the top-left of the screen. 
+#. Click the Object Detection tab, select the Polygon tool and choose the Foreground class from the chooser at the top-left of the screen. 
 
     .. image:: images/Orbit8.png
 
-17. You can now draw around a number of cell nuclei on the Image. The more accurately you draw and the higher number of objects you define, the more you will improve the performance of the segmentation, but about a dozen should be sufficient.
+#. You can now draw around a number of cell nuclei on the Image. The more accurately you draw and the higher number of objects you define, the more you will improve the performance of the segmentation, but about a dozen should be sufficient.
 
-18. Now switch to the Background class and draw around several background regions. 
+#. Now switch to the Background class and draw around several background regions. 
 
     .. image:: images/Orbit9.png
 
-19. We can then train the model by clicking the Train button or press F7. You will see a progress bar in the right-hand panel.
+#. We can then train the model by clicking the Train button or press F7. You will see a progress bar in the right-hand panel.
 
     .. image:: images/Orbit10.png 
 
-20. To see how this model classifies objects within a region, click the *Define ROI* button and draw around a region of the image. Then click *Classify*. If no ROI is drawn, Orbit will attempt to classify the whole Image which can be very time-consuming.
+#. To see how this model classifies objects within a region, click the *Define ROI* button and draw around a region of the image. Then click *Classify*. If no ROI is drawn, Orbit will attempt to classify the whole Image which can be very time-consuming.
 
     .. image:: images/Orbit11.png
 
-21. Once the classification is complete, a notification window pops up. Close it and view the results on the Image by dragging the slider below the Image to the right: 
+#. Once the classification is complete, a notification window pops up. Close it and view the results on the Image by dragging the slider below the Image to the right: 
 
     .. image:: images/Orbit12.png
 
-22. To segment the Image using this classification, click Set Primary Segmentation Model and then Object Segmentation. 
+#. To segment the Image using this classification, click Set Primary Segmentation Model and then Object Segmentation. 
 
     .. image:: images/Orbit13.png
     .. image:: images/Orbit14.png
     .. image:: images/Orbit15.png
 
-23. Click the *Model* tab and *Save Model On Server*, enter a name to save the model to OMERO. Note that you can also use *Save Model as…* to save the model to your local drive.
+#. Click the *Model* tab and *Save Model On Server*, enter a name to save the model to OMERO. Note that you can also use *Save Model as…* to save the model to your local drive.
 
 Scripted segmentation and saving to OMERO
 -----------------------------------------
 
 We will use the model created in the last step above to repeat the segmentation, using a script which allows us to save the results back to OMERO. This will use a saved ROI Annotation instead of a temporary ROI as in the manual workflow.
 
-1.  Re-open the same image 77928.svs [Series 1] to clear the ROIs and in the right-hand panel select the Annotations tab.
+#.  Re-open the same image 77928.svs [Series 1] to clear the ROIs and in the right-hand panel select the Annotations tab.
 
-2.  Pan the Image to a region you wish to analyse, select the *Add Polygon* button and draw around a region.
+#.  Pan the Image to a region you wish to analyse, select the *Add Polygon* button and draw around a region.
 
     .. image:: images/Orbit16.png
 
-3.  Select this Annotation from the list in the right panel and click Edit (pencil icon).
+#.  Select this Annotation from the list in the right panel and click Edit (pencil icon).
 
-4.  In the dialog, set the *Type* to *ROI*.
+#.  In the dialog, set the *Type* to *ROI*.
 
     .. image:: images/Orbit17.png
 
-5.  Click Ok. This will save the ROI as an annotation on this image in OMERO.
+#.  Click Ok. This will save the ROI as an annotation on this image in OMERO.
 
-6.  Click on *Tools > Script Editor* to open a scripting window.
+#.  Click on *Tools > Script Editor* to open a scripting window.
 
-7.  Copy the script from training-scripts: \ https://raw.githubusercontent.com/ome/training-scripts/master/practical/orbit/segmentation.groovy and replace the existing code in the script window.
+#.  Copy the script from training-scripts: \ https://raw.githubusercontent.com/ome/training-scripts/master/practical/orbit/segmentation.groovy and replace the existing code in the script window.
 
-8.  Update the username and password
+#.  Update the username and password
 
-9.  The script will load the Orbit model and the ROI that we saved to OMERO, segment the image within the ROI and save the segmented shapes as Polygons to OMERO.
+#.  The script will load the Orbit model and the ROI that we saved to OMERO, segment the image within the ROI and save the segmented shapes as Polygons to OMERO.
 
-10. Click *Run*.
+#. Click *Run*.
 
-11. When complete, you can use OMERO.iviewer to see the ROIs created in OMERO.
+#. When complete, you can use OMERO.iviewer to see the ROIs created in OMERO.
 
 
 .. |image5| image:: images/Orbit6.png
