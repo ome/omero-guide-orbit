@@ -7,18 +7,14 @@ import com.actelion.research.orbit.imageAnalysis.utils.OrbitHelper
 
 import java.awt.Shape
 
-import com.actelion.research.orbit.imageAnalysis.components.*
-import com.actelion.research.orbit.imageAnalysis.models.*
 import com.actelion.research.orbit.imageprovider.ImageProviderOmero
+import com.actelion.research.orbit.imageprovider.OmeroConf
 
 import java.awt.Polygon
 import java.awt.Point
 import omero.model.PolygonI
 import omero.model.ImageI
 import omero.model.RoiI
-import omero.gateway.*
-import omero.api.*
-import omero.sys.ParametersI
 import omero.gateway.Gateway
 import omero.gateway.SecurityContext
 import static omero.rtypes.rstring
@@ -30,8 +26,9 @@ import omero.gateway.facility.BrowseFacility
 // and convert them to Polygons on the Image.
 
 // Edit these parameters
-String USERNAME = "username"
-String PASSWORD = "password"
+String username = "trainer-1"
+String password = "password"
+String hostname = "workshop.openmicroscopy.org"
 
 // Use the currently opened image...
 final OrbitImageAnalysis OIA = OrbitImageAnalysis.getInstance()
@@ -44,8 +41,8 @@ int omeroImageId = rdf.getRawDataFileId()
 println("ID:" + omeroImageId)
 
 // Login to create a new connection with OMERO
-ImageProviderOmero imageProvider = new ImageProviderOmero()
-imageProvider.authenticateUser(USERNAME, PASSWORD)
+ImageProviderOmero imageProvider = new ImageProviderOmero(new OmeroConf(hostName, 4064, true))
+imageProvider.authenticateUser(username, password)
 Gateway gateway = imageProvider.getGatewayAndCtx().getGateway()
 SecurityContext ctx = imageProvider.getGatewayAndCtx().getCtx()
 
@@ -57,7 +54,7 @@ List<RoiI> roisToSave = new ArrayList<RoiI>()
 for (RawAnnotation ann: annotations) {
 	// Cast to ImageAnnotation, scale to 100 and get Points
 	ImageAnnotation ia = new ImageAnnotation(ann)
-	Polygon poly = ((IScaleableShape)ia.getFirstShape()).getScaledInstance(100d,new Point(0,0))
+	Polygon poly = ((IScaleableShape) ia.getFirstShape()).getScaledInstance(100d,new Point(0,0))
 	String points = poly.listPoints()
 	println(points)
 
