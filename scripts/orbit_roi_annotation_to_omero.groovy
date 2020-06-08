@@ -28,12 +28,15 @@
  * https://docs.openmicroscopy.org/latest/omero5/developers/Java.html
  */
 
+import java.util.ArrayList
+import java.util.List
+
 import com.actelion.research.orbit.beans.RawDataFile
 import com.actelion.research.orbit.beans.RawAnnotation
-import com.actelion.research.orbit.imageAnalysis.dal.DALConfig
-import com.actelion.research.orbit.imageAnalysis.models.OrbitModel
-import com.actelion.research.orbit.imageAnalysis.models.SegmentationResult
-import com.actelion.research.orbit.imageAnalysis.utils.OrbitHelper
+import com.actelion.research.orbit.imageAnalysis.components.ImageFrame
+import com.actelion.research.orbit.imageAnalysis.components.OrbitImageAnalysis
+import com.actelion.research.orbit.imageAnalysis.models.ImageAnnotation
+import com.actelion.research.orbit.imageAnalysis.models.IScaleableShape
 
 import java.awt.Shape
 
@@ -49,8 +52,6 @@ import omero.gateway.Gateway
 import omero.gateway.SecurityContext
 import static omero.rtypes.rstring
 import static omero.rtypes.rint
-import static omero.rtypes.rlong
-import omero.gateway.facility.BrowseFacility
 
 // Example script to show how to load Orbit ROI annotations from OMERO
 // and convert them to Polygons on the Image.
@@ -84,7 +85,7 @@ List<RoiI> roisToSave = new ArrayList<RoiI>()
 for (RawAnnotation ann: annotations) {
 	// Cast to ImageAnnotation, scale to 100 and get Points
 	ImageAnnotation ia = new ImageAnnotation(ann)
-	Polygon poly = ((IScaleableShape) ia.getFirstShape()).getScaledInstance(100d,new Point(0,0))
+	Polygon poly = ((IScaleableShape) ia.getFirstShape()).getScaledInstance(100d, new Point(0, 0))
 	String points = poly.listPoints()
 	println(points)
 
