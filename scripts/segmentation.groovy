@@ -62,7 +62,7 @@ String hostname = "outreach.openmicroscopy.org"
 int omeroImageId = 10001
 
 // Login to create a new connection with OMERO
-ImageProviderOmero imageProvider = new ImageProviderOmero(new OmeroConf(hostName, 4064, true))
+ImageProviderOmero imageProvider = new ImageProviderOmero(new OmeroConf(hostname, 4064, true))
 imageProvider.authenticateUser(username, password)
 Gateway gateway = imageProvider.getGatewayAndCtx().getGateway()
 SecurityContext ctx = imageProvider.getGatewayAndCtx().getCtx()
