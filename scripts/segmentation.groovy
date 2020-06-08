@@ -30,8 +30,11 @@
 
 import com.actelion.research.orbit.beans.RawDataFile
 import com.actelion.research.orbit.beans.RawAnnotation
+
+import com.actelion.research.orbit.imageAnalysis.components.RecognitionFrame
 import com.actelion.research.orbit.imageAnalysis.dal.DALConfig
 import com.actelion.research.orbit.imageAnalysis.models.OrbitModel
+import com.actelion.research.orbit.imageAnalysis.models.RectangleExt
 import com.actelion.research.orbit.imageAnalysis.models.SegmentationResult
 import com.actelion.research.orbit.imageAnalysis.utils.OrbitHelper
 
@@ -73,6 +76,11 @@ imageProvider.authenticateUser(username, password)
 Gateway gateway = imageProvider.getGatewayAndCtx().getGateway()
 SecurityContext ctx = imageProvider.getGatewayAndCtx().getCtx()
 
+//Load the image
+browse = gateway.getFacility(BrowseFacility)
+image = browse.getImage(ctx, omeroImageId)
+
+
 // Load Models that I own. OMERO annotations of type: Model
 imageProvider.setOnlyOwnerObjects(true)
 List<RawAnnotation> annotations = imageProvider.LoadRawAnnotationsByType(RawAnnotation.ANNOTATION_TYPE_MODEL)
@@ -89,8 +97,19 @@ for (RawAnnotation ra : annotations) {
 OrbitModel model = OrbitModel.LoadFromOrbit(fileAnnId)
 println("Loaded Model: " + model.getName())
 
+// Select a 500x500 pixels region in centre of the image
+pixels = image.getDefaultPixels()
+w = 250
+h = 250
+cx = (int) (pixels.getSizeX()/2)
+cy = (int) (pixels.getSizeY()/2)
+region = new RectangleExt(cx-w, cy-w, 2*w, 2*h)
+
 // Perform the segmentation
-SegmentationResult res = OrbitHelper.Segmentation(rdf.rawDataFileId, model, null, 1)
+RawDataFile rdf = imageProvider.LoadRawDataFile((int) omeroImageId)
+RecognitionFrame rf = new RecognitionFrame(rdf, false)
+SegmentationResult res = OrbitHelper.Segmentation(rf, (int) omeroImageId, model, null, 1, true, region)
+
 
 // handle the segmented objects
 println("SegmentationResult: " + res.shapeList.size() + " shapes")
