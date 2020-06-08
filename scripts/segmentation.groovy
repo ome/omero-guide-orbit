@@ -64,6 +64,7 @@ int omeroImageId = 10001
 // Login to create a new connection with OMERO
 ImageProviderOmero imageProvider = new ImageProviderOmero(new OmeroConf(hostname, 4064, true))
 imageProvider.authenticateUser(username, password)
+DALConfig.setImageProvider(imageProvider)
 Gateway gateway = imageProvider.getGatewayAndCtx().getGateway()
 SecurityContext ctx = imageProvider.getGatewayAndCtx().getCtx()
 
@@ -76,7 +77,7 @@ image = browse.getImage(ctx, omeroImageId)
 imageProvider.setOnlyOwnerObjects(true)
 List<RawAnnotation> annotations = imageProvider.LoadRawAnnotationsByType(RawAnnotation.ANNOTATION_TYPE_MODEL)
 println("Found " + annotations.size() + " files")
-// Use the first annotation
+// Use the most recent annotations
 int fileAnnId = 0
 for (RawAnnotation ra : annotations) {
     id = ra.getRawAnnotationId()
