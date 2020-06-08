@@ -58,17 +58,8 @@ import omero.gateway.facility.DataManagerFacility
 // Edit these parameters
 String username = "trainer-1"
 String password = "password"
-String hostname = "workshop.openmicroscopy.org"
-
-// Use the currently opened image...
-final OrbitImageAnalysis OIA = OrbitImageAnalysis.getInstance()
-ImageFrame iFrame = OIA.getIFrame()
-println("selected image: " + iFrame)
-RawDataFile rdf = iFrame.rdf
-
-// Get the OMERO Image ID
-long omeroImageId = rdf.getRawDataFileId()
-println("ID:" + omeroImageId)
+String hostname = "outreach.openmicroscopy.org"
+int omeroImageId = 10001
 
 // Login to create a new connection with OMERO
 ImageProviderOmero imageProvider = new ImageProviderOmero(new OmeroConf(hostName, 4064, true))
@@ -106,9 +97,9 @@ cy = (int) (pixels.getSizeY()/2)
 region = new RectangleExt(cx-w, cy-w, 2*w, 2*h)
 
 // Perform the segmentation
-RawDataFile rdf = imageProvider.LoadRawDataFile((int) omeroImageId)
+RawDataFile rdf = imageProvider.LoadRawDataFile(omeroImageId)
 RecognitionFrame rf = new RecognitionFrame(rdf, false)
-SegmentationResult res = OrbitHelper.Segmentation(rf, (int) omeroImageId, model, null, 1, true, region)
+SegmentationResult res = OrbitHelper.Segmentation(rf, omeroImageId, model, null, 1, true, region)
 
 
 // handle the segmented objects
