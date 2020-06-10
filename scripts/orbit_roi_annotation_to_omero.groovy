@@ -28,9 +28,10 @@
  * https://docs.openmicroscopy.org/latest/omero5/developers/Java.html
  */
 
-import java.awt.Shape
+
 import java.awt.Point
 import java.awt.Polygon
+import java.awt.Shape
 import java.util.ArrayList
 import java.util.List
 
