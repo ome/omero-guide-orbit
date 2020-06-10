@@ -72,7 +72,7 @@ int omeroImageId = rdf.getRawDataFileId()
 println("ID:" + omeroImageId)
 
 // Login to create a new connection with OMERO
-OmeroConf conf = new OmeroConf(hostName, 443, true)
+OmeroConf conf = new OmeroConf(hostname, 443, true)
 conf.setUseWebSockets(true)
 ImageProviderOmero imageProvider = new ImageProviderOmero(conf)
 imageProvider.authenticateUser(username, password)
