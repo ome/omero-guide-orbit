@@ -62,7 +62,7 @@ String hostname = "wss://outreach.openmicroscopy.org/omero-ws"
 int omeroImageId = 10001
 
 // Login to create a new connection with OMERO
-OmeroConf conf = new OmeroConf(hostName, 443, true)
+OmeroConf conf = new OmeroConf(hostname, 443, true)
 conf.setUseWebSockets(true)
 ImageProviderOmero imageProvider = new ImageProviderOmero(conf)
 imageProvider.authenticateUser(username, password)
