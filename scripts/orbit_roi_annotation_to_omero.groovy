@@ -28,6 +28,9 @@
  * https://docs.openmicroscopy.org/latest/omero5/developers/Java.html
  */
 
+import java.awt.Shape
+import java.awt.Point
+import java.awt.Polygon
 import java.util.ArrayList
 import java.util.List
 
@@ -37,19 +40,16 @@ import com.actelion.research.orbit.imageAnalysis.components.ImageFrame
 import com.actelion.research.orbit.imageAnalysis.components.OrbitImageAnalysis
 import com.actelion.research.orbit.imageAnalysis.models.ImageAnnotation
 import com.actelion.research.orbit.imageAnalysis.models.IScaleableShape
-
-import java.awt.Shape
-
 import com.actelion.research.orbit.imageprovider.ImageProviderOmero
 import com.actelion.research.orbit.imageprovider.OmeroConf
 
-import java.awt.Polygon
-import java.awt.Point
-import omero.model.PolygonI
-import omero.model.ImageI
-import omero.model.RoiI
+
 import omero.gateway.Gateway
 import omero.gateway.SecurityContext
+import omero.model.ImageI
+import omero.model.RoiI
+import omero.model.PolygonI
+
 import static omero.rtypes.rstring
 import static omero.rtypes.rint
 

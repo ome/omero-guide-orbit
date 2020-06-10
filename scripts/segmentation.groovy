@@ -28,6 +28,8 @@
  * https://docs.openmicroscopy.org/latest/omero5/developers/Java.html
  */
 
+import java.awt.Shape
+
 import com.actelion.research.orbit.beans.RawDataFile
 import com.actelion.research.orbit.beans.RawAnnotation
 
@@ -37,9 +39,6 @@ import com.actelion.research.orbit.imageAnalysis.models.OrbitModel
 import com.actelion.research.orbit.imageAnalysis.models.RectangleExt
 import com.actelion.research.orbit.imageAnalysis.models.SegmentationResult
 import com.actelion.research.orbit.imageAnalysis.utils.OrbitHelper
-
-import java.awt.Shape
-
 import com.actelion.research.orbit.imageprovider.ImageProviderOmero
 import com.actelion.research.orbit.imageprovider.OmeroConf
 
@@ -50,10 +49,11 @@ import omero.model.RoiI
 
 import omero.gateway.Gateway
 import omero.gateway.SecurityContext
-import static omero.rtypes.rstring
-import static omero.rtypes.rint
 import omero.gateway.facility.BrowseFacility
 import omero.gateway.facility.DataManagerFacility
+import static omero.rtypes.rstring
+import static omero.rtypes.rint
+
 
 // Edit these parameters
 String username = "trainer-1"
