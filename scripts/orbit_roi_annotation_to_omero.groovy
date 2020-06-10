@@ -59,7 +59,7 @@ import static omero.rtypes.rint
 // Edit these parameters
 String username = "trainer-1"
 String password = "password"
-String hostname = "workshop.openmicroscopy.org"
+String hostname = "wss://workshop.openmicroscopy.org/omero-ws"
 
 // Use the currently opened image...
 final OrbitImageAnalysis OIA = OrbitImageAnalysis.getInstance()
@@ -72,7 +72,9 @@ int omeroImageId = rdf.getRawDataFileId()
 println("ID:" + omeroImageId)
 
 // Login to create a new connection with OMERO
-ImageProviderOmero imageProvider = new ImageProviderOmero(new OmeroConf(hostname, 4064, true))
+OmeroConf conf = new OmeroConf(hostName, 443, true)
+conf.setUseWebSockets(true)
+ImageProviderOmero imageProvider = new ImageProviderOmero(conf)
 imageProvider.authenticateUser(username, password)
 Gateway gateway = imageProvider.getGatewayAndCtx().getGateway()
 SecurityContext ctx = imageProvider.getGatewayAndCtx().getCtx()

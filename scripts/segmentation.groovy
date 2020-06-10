@@ -58,11 +58,13 @@ import omero.gateway.facility.DataManagerFacility
 // Edit these parameters
 String username = "trainer-1"
 String password = "password"
-String hostname = "outreach.openmicroscopy.org"
+String hostname = "wss://outreach.openmicroscopy.org/omero-ws"
 int omeroImageId = 10001
 
 // Login to create a new connection with OMERO
-ImageProviderOmero imageProvider = new ImageProviderOmero(new OmeroConf(hostname, 4064, true))
+OmeroConf conf = new OmeroConf(hostName, 443, true)
+conf.setUseWebSockets(true)
+ImageProviderOmero imageProvider = new ImageProviderOmero(conf)
 imageProvider.authenticateUser(username, password)
 DALConfig.setImageProvider(imageProvider)
 Gateway gateway = imageProvider.getGatewayAndCtx().getGateway()
