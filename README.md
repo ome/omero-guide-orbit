@@ -1,6 +1,9 @@
 # User guide for Orbit and OMERO
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/ome/omero-guide-orbit/master?filepath=notebooks)
 
+[![Documentation](https://readthedocs.org/projects/omero-guide-orbit/badge/?version=latest)](https://omero-guides.readthedocs.io/en/latest/orbit/docs/index.html)
+
+The documentation is deployed at [Using Orbit](https://omero-guides.readthedocs.io/en/latest/orbit/docs/index.html).
 
 This guide demonstrates how to analyze data stored in OMERO in Orbit.
 This can be done using the User Interface or via the scripting facility in Orbit.
@@ -10,11 +13,11 @@ To run the notebooks, you can either [run on mybinder.org](https://mybinder.org/
 
 To build locally:
 
- * Install [Docker](https://www.docker.com/) if required
+ * Install [Docker](https://www.docker.com/) if required.
  * Create a virtual environment and install repo2docker from PyPI.
- * Clone this repository
+ * Clone this repository.
  * Run  ``repo2docker``. 
- * Depending on the permissions, you might have to run the command as an admin
+ * Depending on the permissions, you might have to run the command as an admin.
 
 ```
 pip install jupyter-repo2docker
