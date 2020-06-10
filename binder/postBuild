@@ -1,0 +1,7 @@
+#!/bin/bash
+set -eux
+
+env
+
+cd /srv/conda
+curl -s http://www.stritt.de/files/orbit_linux_364.tar.gz | tar xz
