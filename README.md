@@ -1,10 +1,7 @@
 # User guide for Orbit and OMERO
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/ome/omero-guide-orbit/master?filepath=notebooks)
-
 [![Documentation](https://readthedocs.org/projects/omero-guide-orbit/badge/?version=latest)](https://omero-guides.readthedocs.io/en/latest/orbit/docs/index.html)
-
 [![Actions Status](https://github.com/ome/omero-guide-orbit/workflows/repo2docker/badge.svg)](https://github.com/ome/omero-guide-orbit/actions)
-
 [![Actions Status](https://github.com/ome/omero-guide-orbit/workflows/sphinx/badge.svg)](https://github.com/ome/omero-guide-orbit/actions)
 
 The documentation is deployed at [Using Orbit](https://omero-guides.readthedocs.io/en/latest/orbit/docs/index.html).
